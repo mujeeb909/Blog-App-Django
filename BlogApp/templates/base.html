@@ -10,7 +10,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Blog Home - Start Bootstrap Template</title>
+    <title>IT Tech Blogs</title>
     <!-- Favicon-->
     <link
       rel="icon"
@@ -20,12 +20,25 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
   </head>
+  <style>
+    .mynav ul a {
+      color: white !important;
+    }
+
+    .mynav ul li .dropdown-item:hover {
+      color: black !important;
+    }
+
+    .mynav ul {
+      margin-left: auto;
+    }
+  </style>
 
   <body>
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="#!">Start Bootstrap</a>
+        <a class="navbar-brand" href="{% url 'index' %}">IT Tech Blogs</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -50,15 +63,24 @@
       </div>
     </nav>
 
-    {% block content %}
-    <h1>Hello World</h1>
+    {% for message in messages %}
 
-    {% endblock content %}
+    <div class="container">
+      <div
+        class="alert alert-{{message.tags}}"
+        style="margin-top: 20px"
+        role="alert"
+      >
+        {{message}}
+      </div>
+    </div>
+
+    {% endfor %} {% block content %} {% endblock content %}
     <!-- Footer-->
     <footer class="py-5 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">
-          Copyright &copy; Your Website 2023
+          Copyright &copy; Your Website 2024
         </p>
       </div>
     </footer>
