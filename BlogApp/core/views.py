@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from .forms import RegisterForm, UpdateProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from minBlogApp.models import Blog
 
 def signup(request):
     form = RegisterForm()
@@ -44,7 +45,8 @@ def signout(request):
 @login_required(login_url='login')
 def profile(request):
     user = request.user
-    context = {'user': user}
+    blogs = Blog.objects.filter(user = user)
+    context = {'user': user, 'blog': blogs}
     return render(request, 'core/profile.html', context)
 
 @login_required(login_url='login')

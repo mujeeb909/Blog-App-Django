@@ -140,26 +140,41 @@
           <h5>My Articles</h5>
 
           <div class="row">
-            {% comment %} {% for blog in blogs %} {% endcomment %}
+            {% for blog in blogs %}
 
             <div class="col-md-6">
               <div class="card mb-4">
-                <a href="#!"><img class="card-img-top" src="" alt="..." /></a>
+                <a href="#!"
+                  ><img
+                    class="card-img-top"
+                    src="{{blog.thumbnail.url}}"
+                    alt="..."
+                /></a>
                 <div class="card-body">
-                  <div class="small text-muted">01-jan-2023</div>
-                  <h2 class="card-title h4">Title</h2>
-                  <p class="card-text">Card body</p>
-                  <a class="btn btn-primary" href="#!">Read more →</a>
+                  <div class="small text-muted">{{blog.created}}</div>
+                  <h2 class="card-title h4">{{blog.title}}</h2>
+                  <p class="card-text">
+                    {{blog.body | safe | truncatechars:"100"}}
+                  </p>
+                  <a
+                    class="btn btn-primary"
+                    href="{% url 'detail' slug=blog.slug %}"
+                    >Read more →</a
+                  >
 
                   <span style="float: right" class="actions">
-                    <a href="#!"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a href="#!"><i class="fa-solid fa-trash-can"></i></a>
+                    <a href="{% url 'update-article' blog.slug %}"
+                      ><i class="fa-solid fa-pen-to-square"></i
+                    ></a>
+                    <a href="{% url 'delete-article' blog.slug %}"
+                      ><i class="fa-solid fa-trash-can"></i
+                    ></a>
                   </span>
                 </div>
               </div>
             </div>
 
-            {% comment %} {% endfor %} {% endcomment %}
+            {% endfor %}
           </div>
         </div>
       </div>
