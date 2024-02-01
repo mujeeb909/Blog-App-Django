@@ -25,7 +25,7 @@ def create_article(request):
         if form.is_valid():
             blog = form.save(commit=False)
             blog.slug = slugify(request.POST["title"])
-            blog.user=request.user
+            blog.user = request.user
             blog.save()
             messages.success(request, "Article created successfully!")
             return redirect("profile")

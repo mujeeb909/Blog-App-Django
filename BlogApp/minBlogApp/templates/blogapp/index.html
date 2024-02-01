@@ -50,7 +50,7 @@
             <div class="card-body">
               <div class="small text-muted">{{ blog.created }}</div>
               <h2 class="card-title h4">{{ blog.title }}</h2>
-              <p class="card-text">{{ blog.body|truncatechars:"100" }}</p>
+              <p class="card-text">{{ blog.body | truncatechars:"100" }}</p>
               <a class="btn btn-primary" href="{% url 'detail' blog.slug %}"
                 >Read more →</a
               >
